@@ -1,0 +1,26 @@
+{% extends 'board/layout.html' %}
+
+{% block title %}User adds{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">User {{ user.user.username }} adds:</h1>
+<div class="row">
+        {% for ad in user_ads %}
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm p-3">
+                    <h5>{{  ad.title }}</h5>
+                    <p class="text-muted mb-0">
+                        {{ ad.description|truncatechars:100 }}
+                    </p>
+                    <p class="text-muted mb-0">
+                        Price: {{ ad.price }}
+                    </p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No adds found.</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

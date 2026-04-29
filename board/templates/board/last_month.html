@@ -1,0 +1,36 @@
+{% extends 'board/layout.html' %}
+
+{% block title %}Last month adds{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Last month adds:</h1>
+<div class="row">
+        {% for ad in last_month_ads %}
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm p-3">
+                    <h5>{{  ad.title }}</h5>
+                    <p class="text-muted mb-0">
+                        {{ ad.description|truncatechars:100 }}
+                    </p>
+                    <p class="text-muted mb-0">
+                        Price: {{ ad.price }}
+                    </p>
+                    <p class="text-muted mb-0">
+                        Category: {{ ad.category }}
+                    </p>
+                    <p class="text-muted mb-0">
+                        {% if ad.is_active %}
+                        Status:    Active
+                        {% else %}
+                        Status:    Inactive
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No adds found.</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
